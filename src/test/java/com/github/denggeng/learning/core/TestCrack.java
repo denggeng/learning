@@ -56,6 +56,8 @@ public class TestCrack {
         read("D:\\tmp\\baicizan\\mp3\\zp_2081_11_0_11_161221133206.mp3");
         read("D:\\tmp\\baicizan\\mp3\\zp_3023_11_0_10_161221133619.mp3");
         read("D:\\tmp\\baicizan\\mp3\\zp_3909_11_0_6_161221133921.mp3");
+        read("D:\\tmp\\baicizan\\mp3\\zp_4091_11_0_9_161221134524.mp3");
+
 
     }
 
@@ -66,13 +68,13 @@ public class TestCrack {
             //System.out.println("Length of this mp3 is: " + mp3file.getLengthInSeconds() + " seconds");
             //System.out.println("Bitrate: " + mp3file.getBitrate() + " kbps " + (mp3file.isVbr() ? "(VBR)" : "(CBR)"));
             //System.out.println("Sample rate: " + mp3file.getSampleRate() + " Hz");
-            //System.out.println("Has ID3v1 tag?: " + (mp3file.hasId3v1Tag() ? "YES" : "NO"));
+            System.out.println("Has ID3v1 tag?: " + (mp3file.hasId3v1Tag() ? "YES" : "NO"));
             //System.out.println("Has ID3v2 tag?: " + (mp3file.hasId3v2Tag() ? "YES" : "NO"));
             //System.out.println("Has custom tag?: " + (mp3file.hasCustomTag() ? "YES" : "NO"));
             String cuntomTag = new String(mp3file.getCustomTag(), "UTF-8");
             String[] cuntomTags = cuntomTag.split("\\n");
             System.out.println("start>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+bip);
-            System.out.println("Custom tag: " + cuntomTag);
+            System.out.println("Custom tag: " + cuntomTag.substring(cuntomTag.length()-128,cuntomTag.length()));
             //System.out.println("Custom tag0: " + cuntomTags[0] + "#" + cuntomTags[1] + "#" + cuntomTags[2] + "#" + cuntomTags[3]);
             System.out.println("end>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 
