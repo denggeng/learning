@@ -47,12 +47,16 @@ public class TestCrack {
 
     @Test
     public void testMulti() {
-        String mp31 = "D:\\tmp\\baicizan\\mp3\\zp_1828_11_0_12_161221133010.mp3";
-        String mp32 = "D:\\tmp\\baicizan\\mp3\\zp_1828_11_0_12_161221133010.mp3";
-        read(mp31);
-        read(mp32);
+
+        read("D:\\tmp\\baicizan\\mp3\\zp_185_11_0_13_161221131838.mp3");
         read("D:\\tmp\\baicizan\\mp3\\zp_188_11_0_10_161221131838.mp3");
         read("D:\\tmp\\baicizan\\mp3\\zp_295_11_0_10_161221131934.mp3");
+        read("D:\\tmp\\baicizan\\mp3\\zp_395_11_0_9_161221132040.mp3");
+        read("D:\\tmp\\baicizan\\mp3\\zp_1828_11_0_12_161221133010.mp3");
+        read("D:\\tmp\\baicizan\\mp3\\zp_2081_11_0_11_161221133206.mp3");
+        read("D:\\tmp\\baicizan\\mp3\\zp_3023_11_0_10_161221133619.mp3");
+        read("D:\\tmp\\baicizan\\mp3\\zp_3909_11_0_6_161221133921.mp3");
+
     }
 
     public void read(String bip) {
@@ -67,10 +71,10 @@ public class TestCrack {
             //System.out.println("Has custom tag?: " + (mp3file.hasCustomTag() ? "YES" : "NO"));
             String cuntomTag = new String(mp3file.getCustomTag(), "UTF-8");
             String[] cuntomTags = cuntomTag.split("\\n");
-
+            System.out.println("start>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+bip);
             System.out.println("Custom tag: " + cuntomTag);
-            System.out.println("Custom tag0: " + cuntomTags[0] + "#" + cuntomTags[1] + "#" + cuntomTags[2] + "#" + cuntomTags[3]);
-            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+            //System.out.println("Custom tag0: " + cuntomTags[0] + "#" + cuntomTags[1] + "#" + cuntomTags[2] + "#" + cuntomTags[3]);
+            System.out.println("end>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 
         } catch (IOException e) {
             e.printStackTrace();
