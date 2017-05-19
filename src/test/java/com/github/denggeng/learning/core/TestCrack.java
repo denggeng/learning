@@ -46,19 +46,31 @@ public class TestCrack {
     }
 
     @Test
+    public void extra() {
+        File folder = new File("D:\\tmp\\百词斩\\mp3");
+        String extraFolder = "D:\\tmp\\百词斩\\extra";
+        File[] files = folder.listFiles();
+        for (File file : files) {
+            String path = file.getPath();
+            System.out.println(path);
+            try {
+                ZPackage zPackage = new ZPackage(path, 1);
+                ZPacks.unpack(zPackage, extraFolder);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Test
     public void testMulti() {
-
-        read("D:\\tmp\\baicizan\\mp3\\zp_185_11_0_13_161221131838.mp3");
-        read("D:\\tmp\\baicizan\\mp3\\zp_188_11_0_10_161221131838.mp3");
-        read("D:\\tmp\\baicizan\\mp3\\zp_295_11_0_10_161221131934.mp3");
-        read("D:\\tmp\\baicizan\\mp3\\zp_395_11_0_9_161221132040.mp3");
-        read("D:\\tmp\\baicizan\\mp3\\zp_1828_11_0_12_161221133010.mp3");
-        read("D:\\tmp\\baicizan\\mp3\\zp_2081_11_0_11_161221133206.mp3");
-        read("D:\\tmp\\baicizan\\mp3\\zp_3023_11_0_10_161221133619.mp3");
-        read("D:\\tmp\\baicizan\\mp3\\zp_3909_11_0_6_161221133921.mp3");
-        read("D:\\tmp\\baicizan\\mp3\\zp_4091_11_0_9_161221134524.mp3");
-
-
+        File folder = new File("D:\\tmp\\百词斩\\mp3");
+        File[] files = folder.listFiles();
+        for (File file : files) {
+            String path = file.getPath();
+            System.out.println(path);
+            read(path);
+        }
     }
 
     public void read(String bip) {
@@ -73,8 +85,8 @@ public class TestCrack {
             //System.out.println("Has custom tag?: " + (mp3file.hasCustomTag() ? "YES" : "NO"));
             String cuntomTag = new String(mp3file.getCustomTag(), "UTF-8");
             String[] cuntomTags = cuntomTag.split("\\n");
-            System.out.println("start>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+bip);
-            System.out.println("Custom tag: " + cuntomTag.substring(cuntomTag.length()-128,cuntomTag.length()));
+            System.out.println("start>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + bip);
+            System.out.println("Custom tag: " + cuntomTag.substring(cuntomTag.length() - 128, cuntomTag.length()));
             //System.out.println("Custom tag0: " + cuntomTags[0] + "#" + cuntomTags[1] + "#" + cuntomTags[2] + "#" + cuntomTags[3]);
             System.out.println("end>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 
