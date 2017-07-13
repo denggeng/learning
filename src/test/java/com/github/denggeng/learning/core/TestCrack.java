@@ -22,6 +22,7 @@ public class TestCrack {
             try {
                 ZPackage zPackage = new ZPackage(path, 1);
                 ZPacks.unpack(zPackage, extraFolder);
+                return;
             } catch (IOException e) {
                 e.printStackTrace();
             }

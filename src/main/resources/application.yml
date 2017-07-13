@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost/logic_word
+    username: logicword
+    password: logicword
+    driver-class-name: com.mysql.jdbc.Driver
