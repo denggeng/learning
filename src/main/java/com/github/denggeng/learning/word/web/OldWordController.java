@@ -66,7 +66,7 @@ public class OldWordController {
                 String jsonString = readOne(file);
                 //logger.info("word:{}", jsonString);
                 addOne(jsonString);
-                if (oldWords.size() % 1000 == 0) {
+                if (oldWords.size() % 5000 == 0) {
                     oldWordRepository.save(oldWords);
                     oldWords.clear();
                 }
@@ -108,6 +108,7 @@ public class OldWordController {
         oriOldWord.setSentenceTrans(jsonObject.get("sentence_trans") != null ? jsonObject.get("sentence_trans").getAsString() : null);
         oriOldWord.setSentencePhrase(jsonObject.get("sentence_phrase") != null ? jsonObject.get("sentence_phrase").getAsString() : null);
         oriOldWord.setSentenceAudio(jsonObject.get("sentence_audio") != null ? jsonObject.get("sentence_audio").getAsString() : null);
+        oriOldWord.setWordEtyma(jsonObject.get("word_etyma") != null ? jsonObject.get("word_etyma").getAsString() : null);
         oriOldWord.setClozeData(gson.fromJson(jsonObject.get("cloze_data") != null ? jsonObject.get("cloze_data") : new JsonObject(), Map.class));
         return oriOldWord;
     }

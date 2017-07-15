@@ -40,6 +40,8 @@ public class OriOldWord {
 
     private String sentenceAudio;
 
+    private String wordEtyma;
+
     private Map<String, Object> clozeData;
 
     public Integer getTopicId() {
@@ -176,6 +178,14 @@ public class OriOldWord {
 
     public void setTagId(Integer tagId) {
         this.tagId = tagId;
+    }
+
+    public String getWordEtyma() {
+        return wordEtyma;
+    }
+
+    public void setWordEtyma(String wordEtyma) {
+        this.wordEtyma = wordEtyma;
     }
 
     @Override

@@ -53,7 +53,17 @@ public class OldWord implements Serializable {
     @Column(length = 2048)
     private String closeData;
 
+    private String wordEtyma;
+
     private Integer tagId;
+
+    public String getWordEtyma() {
+        return wordEtyma;
+    }
+
+    public void setWordEtyma(String wordEtyma) {
+        this.wordEtyma = wordEtyma;
+    }
 
     public Integer getTagId() {
         return tagId;
