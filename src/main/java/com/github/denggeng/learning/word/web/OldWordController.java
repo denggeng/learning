@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -33,6 +34,8 @@ public class OldWordController {
 
     private Gson gson = new Gson();
 
+    private List<OldWord> oldWords = new ArrayList<>(1000);
+
     @Autowired
     private OldWordRepository oldWordRepository;
 
@@ -44,6 +47,8 @@ public class OldWordController {
     @RequestMapping("initData")
     public Object initData(String path) {
         treeRead(new File("D:\\study\\extract"));
+        oldWordRepository.save(oldWords);
+        oldWords.clear();
         return "success!";
     }
 
@@ -60,19 +65,25 @@ public class OldWordController {
             if (file.getName().equals("meta.json")) {
                 String jsonString = readOne(file);
                 //logger.info("word:{}", jsonString);
-                saveOne(jsonString);
+                addOne(jsonString);
+                if (oldWords.size() % 1000 == 0) {
+                    oldWordRepository.save(oldWords);
+                    oldWords.clear();
+                }
+
             }
         }
     }
 
-    private void saveOne(String jsonString) {
+    private void addOne(String jsonString) {
         try {
             Assert.notNull(jsonString);
             OriOldWord oriOldWord = createOriOldWord(jsonString);
             OldWord oldWord = new OldWord();
             BeanUtils.copyProperties(oriOldWord, oldWord);
             oldWord.setCloseData(gson.toJson(oriOldWord.getClozeData()));
-            oldWordRepository.save(oldWord);
+            logger.info("word:{}", oldWord.getWord());
+            oldWords.add(oldWord);
         } catch (Exception e) {
             logger.warn("", e);
         }

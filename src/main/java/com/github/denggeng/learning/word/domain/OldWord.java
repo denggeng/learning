@@ -1,5 +1,6 @@
 package com.github.denggeng.learning.word.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -49,6 +50,7 @@ public class OldWord implements Serializable {
 
     private String sentenceAudio;
 
+    @Column(length = 2048)
     private String closeData;
 
     private Integer tagId;
@@ -197,4 +199,27 @@ public class OldWord implements Serializable {
         this.closeData = closeData;
     }
 
+    @Override
+    public String toString() {
+        return "OldWord{" +
+                "id=" + id +
+                ", topicId=" + topicId +
+                ", wordLevelId=" + wordLevelId +
+                ", word='" + word + '\'' +
+                ", wordVariants='" + wordVariants + '\'' +
+                ", wordAudio='" + wordAudio + '\'' +
+                ", imageFile='" + imageFile + '\'' +
+                ", accent='" + accent + '\'' +
+                ", meanCn='" + meanCn + '\'' +
+                ", meanEn='" + meanEn + '\'' +
+                ", shortPhrase='" + shortPhrase + '\'' +
+                ", deformationImg='" + deformationImg + '\'' +
+                ", sentence='" + sentence + '\'' +
+                ", sentenceTrans='" + sentenceTrans + '\'' +
+                ", sentencePhrase='" + sentencePhrase + '\'' +
+                ", sentenceAudio='" + sentenceAudio + '\'' +
+                ", closeData='" + closeData + '\'' +
+                ", tagId=" + tagId +
+                '}';
+    }
 }

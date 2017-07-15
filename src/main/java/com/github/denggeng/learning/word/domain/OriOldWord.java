@@ -177,4 +177,27 @@ public class OriOldWord {
     public void setTagId(Integer tagId) {
         this.tagId = tagId;
     }
+
+    @Override
+    public String toString() {
+        return "OriOldWord{" +
+                "topicId=" + topicId +
+                ", wordLevelId=" + wordLevelId +
+                ", tagId=" + tagId +
+                ", word='" + word + '\'' +
+                ", wordVariants='" + wordVariants + '\'' +
+                ", wordAudio='" + wordAudio + '\'' +
+                ", imageFile='" + imageFile + '\'' +
+                ", accent='" + accent + '\'' +
+                ", meanCn='" + meanCn + '\'' +
+                ", meanEn='" + meanEn + '\'' +
+                ", shortPhrase='" + shortPhrase + '\'' +
+                ", deformationImg='" + deformationImg + '\'' +
+                ", sentence='" + sentence + '\'' +
+                ", sentenceTrans='" + sentenceTrans + '\'' +
+                ", sentencePhrase='" + sentencePhrase + '\'' +
+                ", sentenceAudio='" + sentenceAudio + '\'' +
+                ", clozeData=" + clozeData +
+                '}';
+    }
 }
