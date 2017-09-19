@@ -74,7 +74,7 @@ public class TestCrack {
 
     @Test
     public void testExtractAll() {
-        File wordsDir = new File("D:\\study\\words");
+        File wordsDir = new File("D:\\study\\words\\zpack");
         treeExtract(wordsDir);
     }
 }
