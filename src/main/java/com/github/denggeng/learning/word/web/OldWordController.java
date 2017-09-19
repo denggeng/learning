@@ -121,6 +121,12 @@ public class OldWordController {
         oriOldWord.setSentenceAudio(jsonObject.get("sentence_audio") != null ? jsonObject.get("sentence_audio").getAsString() : null);
         oriOldWord.setWordEtyma(jsonObject.get("word_etyma") != null ? jsonObject.get("word_etyma").getAsString() : null);
         oriOldWord.setClozeData(gson.fromJson(jsonObject.get("cloze_data") != null ? jsonObject.get("cloze_data") : new JsonObject(), Map.class));
+
+        oriOldWord.setBpgFile(jsonObject.get("bpg_file") != null ? jsonObject.get("bpg_file").getAsString() : null);
+        oriOldWord.setDeformationDesc(jsonObject.get("deformation_desc") != null ? jsonObject.get("deformation_desc").getAsString() : null);
+        oriOldWord.setDeformationSentence(jsonObject.get("deformation_sentence") != null ? jsonObject.get("deformation_sentence").getAsString() : null);
+        oriOldWord.setDeformationSentenceTrans(jsonObject.get("deformation_sentence_trans") != null ? jsonObject.get("deformation_sentence_trans").getAsString() : null);
+
         return oriOldWord;
     }
 
