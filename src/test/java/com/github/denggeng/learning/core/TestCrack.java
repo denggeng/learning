@@ -4,6 +4,8 @@ import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * TestCrack
@@ -76,5 +78,15 @@ public class TestCrack {
     public void testExtractAll() {
         File wordsDir = new File("D:\\study\\words\\zpack");
         treeExtract(wordsDir);
+    }
+
+    @Test
+    public void testSubList() {
+        List<String> list = new ArrayList<>();
+        list.add("a");
+        list.add("b");
+        list.add("c");
+        List<String> list1 = list.subList(0, 1);
+        System.out.println(list1.size());
     }
 }

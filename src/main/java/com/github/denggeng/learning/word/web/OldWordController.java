@@ -47,9 +47,21 @@ public class OldWordController {
     @RequestMapping("initData")
     public Object initData(String path) {
         treeRead(new File("D:\\study\\words\\extract"));
-        oldWordRepository.save(oldWords);
+        logger.info("total words count {} ", oldWords.size());
+        saveWord(oldWords);
         oldWords.clear();
         return "success!";
+    }
+
+    private void saveWord(List<OldWord> oldWords) {
+        for (int i = 0; i < oldWords.size() / 5000 + 1; i++) {
+            int endIndex = oldWords.size() < (5000 * (i + 1)) ? oldWords.size() : (5000 * (i + 1));
+            List<OldWord> subOldWords = oldWords.subList(5000 * i, endIndex);
+            oldWordRepository.save(subOldWords);
+            logger.info("has save {} words", subOldWords.size());
+        }
+
+
     }
 
     @RequestMapping("showFields")
