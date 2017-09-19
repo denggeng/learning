@@ -46,7 +46,7 @@ public class OldWordController {
 
     @RequestMapping("initData")
     public Object initData(String path) {
-        treeRead(new File("D:\\study\\extract"));
+        treeRead(new File("D:\\study\\words\\extract"));
         oldWordRepository.save(oldWords);
         oldWords.clear();
         return "success!";
