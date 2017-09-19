@@ -67,7 +67,7 @@ public class TestCrack {
 
         } else {
             if (file.getPath().endsWith(".zpk")) {
-                extraSingle(file, "D:\\study\\words", "D:\\study\\extract");
+                extraSingle(file, "D:\\study\\words\\zpack", "D:\\study\\words\\extract");
             }
         }
     }
