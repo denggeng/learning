@@ -4,6 +4,7 @@ import com.github.denggeng.learning.word.domain.OldWord;
 import com.github.denggeng.learning.word.domain.OriOldWord;
 import com.github.denggeng.learning.word.service.OldWordRepository;
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
@@ -18,9 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * old word c
@@ -35,6 +34,7 @@ public class OldWordController {
     private Gson gson = new Gson();
 
     private List<OldWord> oldWords = new ArrayList<>(1000);
+    private Set<String> fieldSet = new HashSet<>();
 
     @Autowired
     private OldWordRepository oldWordRepository;
@@ -52,6 +52,13 @@ public class OldWordController {
         return "success!";
     }
 
+    @RequestMapping("showFields")
+    public Object showFields(String path) {
+        treeRead(new File("D:\\study\\words\\extract"));
+        oldWords.clear();
+        return fieldSet;
+    }
+
     private void treeRead(File file) {
         if (file.isDirectory()) {
             File[] files = file.listFiles();
@@ -66,10 +73,10 @@ public class OldWordController {
                 String jsonString = readOne(file);
                 //logger.info("word:{}", jsonString);
                 addOne(jsonString);
-                if (oldWords.size() % 5000 == 0) {
+/*                if (oldWords.size() % 5000 == 0) {
                     oldWordRepository.save(oldWords);
                     oldWords.clear();
-                }
+                }*/
 
             }
         }
@@ -92,6 +99,10 @@ public class OldWordController {
     private OriOldWord createOriOldWord(String jsonString) {
         OriOldWord oriOldWord = new OriOldWord();
         JsonObject jsonObject = gson.fromJson(jsonString, JsonObject.class);
+        Set<Map.Entry<String, JsonElement>> entries = jsonObject.entrySet();
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            fieldSet.add(entry.getKey());
+        }
         oriOldWord.setTopicId(jsonObject.get("topic_id") != null ? jsonObject.get("topic_id").getAsInt() : null);
         oriOldWord.setWordLevelId(jsonObject.get("word_level_id") != null ? jsonObject.get("word_level_id").getAsInt() : null);
         oriOldWord.setTagId(jsonObject.get("tag_id") != null ? jsonObject.get("tag_id").getAsInt() : null);

@@ -42,6 +42,14 @@ public class OriOldWord {
 
     private String wordEtyma;
 
+    private String bpgFile;
+
+    private String deformationSentence;
+
+    private String deformationDesc;
+
+    private String deformationSentenceTrans;
+
     private Map<String, Object> clozeData;
 
     public Integer getTopicId() {
@@ -188,6 +196,38 @@ public class OriOldWord {
         this.wordEtyma = wordEtyma;
     }
 
+    public String getBpgFile() {
+        return bpgFile;
+    }
+
+    public void setBpgFile(String bpgFile) {
+        this.bpgFile = bpgFile;
+    }
+
+    public String getDeformationSentence() {
+        return deformationSentence;
+    }
+
+    public void setDeformationSentence(String deformationSentence) {
+        this.deformationSentence = deformationSentence;
+    }
+
+    public String getDeformationDesc() {
+        return deformationDesc;
+    }
+
+    public void setDeformationDesc(String deformationDesc) {
+        this.deformationDesc = deformationDesc;
+    }
+
+    public String getDeformationSentenceTrans() {
+        return deformationSentenceTrans;
+    }
+
+    public void setDeformationSentenceTrans(String deformationSentenceTrans) {
+        this.deformationSentenceTrans = deformationSentenceTrans;
+    }
+
     @Override
     public String toString() {
         return "OriOldWord{" +
@@ -207,6 +247,11 @@ public class OriOldWord {
                 ", sentenceTrans='" + sentenceTrans + '\'' +
                 ", sentencePhrase='" + sentencePhrase + '\'' +
                 ", sentenceAudio='" + sentenceAudio + '\'' +
+                ", wordEtyma='" + wordEtyma + '\'' +
+                ", bpgFile='" + bpgFile + '\'' +
+                ", deformationSentence='" + deformationSentence + '\'' +
+                ", deformationDesc='" + deformationDesc + '\'' +
+                ", deformationSentenceTrans='" + deformationSentenceTrans + '\'' +
                 ", clozeData=" + clozeData +
                 '}';
     }

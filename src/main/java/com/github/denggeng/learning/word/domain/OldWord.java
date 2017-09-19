@@ -57,6 +57,14 @@ public class OldWord implements Serializable {
 
     private Integer tagId;
 
+    private String bpgFile;
+
+    private String deformationSentence;
+
+    private String deformationDesc;
+
+    private String deformationSentenceTrans;
+
     public String getWordEtyma() {
         return wordEtyma;
     }
@@ -209,6 +217,38 @@ public class OldWord implements Serializable {
         this.closeData = closeData;
     }
 
+    public String getBpgFile() {
+        return bpgFile;
+    }
+
+    public void setBpgFile(String bpgFile) {
+        this.bpgFile = bpgFile;
+    }
+
+    public String getDeformationSentence() {
+        return deformationSentence;
+    }
+
+    public void setDeformationSentence(String deformationSentence) {
+        this.deformationSentence = deformationSentence;
+    }
+
+    public String getDeformationDesc() {
+        return deformationDesc;
+    }
+
+    public void setDeformationDesc(String deformationDesc) {
+        this.deformationDesc = deformationDesc;
+    }
+
+    public String getDeformationSentenceTrans() {
+        return deformationSentenceTrans;
+    }
+
+    public void setDeformationSentenceTrans(String deformationSentenceTrans) {
+        this.deformationSentenceTrans = deformationSentenceTrans;
+    }
+
     @Override
     public String toString() {
         return "OldWord{" +
@@ -229,7 +269,12 @@ public class OldWord implements Serializable {
                 ", sentencePhrase='" + sentencePhrase + '\'' +
                 ", sentenceAudio='" + sentenceAudio + '\'' +
                 ", closeData='" + closeData + '\'' +
+                ", wordEtyma='" + wordEtyma + '\'' +
                 ", tagId=" + tagId +
+                ", bpgFile='" + bpgFile + '\'' +
+                ", deformationSentence='" + deformationSentence + '\'' +
+                ", deformationDesc='" + deformationDesc + '\'' +
+                ", deformationSentenceTrans='" + deformationSentenceTrans + '\'' +
                 '}';
     }
 }
