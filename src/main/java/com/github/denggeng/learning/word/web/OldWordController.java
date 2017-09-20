@@ -2,7 +2,9 @@ package com.github.denggeng.learning.word.web;
 
 import com.github.denggeng.learning.word.domain.OldWord;
 import com.github.denggeng.learning.word.domain.OriOldWord;
+import com.github.denggeng.learning.word.domain.WordLevel;
 import com.github.denggeng.learning.word.service.OldWordRepository;
+import com.github.denggeng.learning.word.service.WordLevelRepository;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -12,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,6 +41,9 @@ public class OldWordController {
 
     @Autowired
     private OldWordRepository oldWordRepository;
+
+    @Autowired
+    private WordLevelRepository wordLevelRepository;
 
     @RequestMapping("")
     public Object getOldWords() {
@@ -69,6 +75,22 @@ public class OldWordController {
         treeRead(new File("D:\\study\\words\\extract"));
         oldWords.clear();
         return fieldSet;
+    }
+
+    @RequestMapping("genWordLevel")
+    public Object genWordLevel() {
+        Iterable<OldWord> all = oldWordRepository.findAll(new Sort("wordLevelId"));
+        Set<Integer> levelSet = new TreeSet<>();
+        for (OldWord oldWord : all) {
+            levelSet.add(oldWord.getWordLevelId());
+        }
+        for (Integer integer : levelSet) {
+            WordLevel wordLevel = new WordLevel();
+            wordLevel.setId(integer.longValue());
+            wordLevelRepository.save(wordLevel);
+        }
+
+        return "success!";
     }
 
     private void treeRead(File file) {
