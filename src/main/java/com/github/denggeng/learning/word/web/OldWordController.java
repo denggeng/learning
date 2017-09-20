@@ -79,7 +79,8 @@ public class OldWordController {
 
     @RequestMapping("genWordLevel")
     public Object genWordLevel() {
-        Iterable<OldWord> all = oldWordRepository.findAll(new Sort("wordLevelId"));
+        //Iterable<OldWord> all = oldWordRepository.findAll(new Sort("wordLevelId"));
+        Iterable<OldWord> all = oldWordRepository.findAll();
         Set<Integer> levelSet = new TreeSet<>();
         for (OldWord oldWord : all) {
             levelSet.add(oldWord.getWordLevelId());
