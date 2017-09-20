@@ -1,8 +1,10 @@
 package com.github.denggeng.learning.word.domain;
 
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.io.Serializable;
 
+@Entity
 public class WordLevel implements Serializable {
 
     private static final long serialVersionUID = 1L;

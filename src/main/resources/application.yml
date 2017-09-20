@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost/logic_word?useUnicode=true&characterEncoding=UTF-8
-    username: logicword
-    password: logicword
+    url: jdbc:mysql://rds821835oxeoz299i8ro.mysql.rds.aliyuncs.com/logic_word?useUnicode=true&characterEncoding=UTF-8
+    username: xbd
+    password: Xbdxbd
     driver-class-name: com.mysql.jdbc.Driver
   jpa:
     hibernate:
