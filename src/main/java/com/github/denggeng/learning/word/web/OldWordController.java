@@ -1,8 +1,10 @@
 package com.github.denggeng.learning.word.web;
 
+import com.github.denggeng.learning.word.domain.NewWord;
 import com.github.denggeng.learning.word.domain.OldWord;
 import com.github.denggeng.learning.word.domain.OriOldWord;
 import com.github.denggeng.learning.word.domain.WordLevel;
+import com.github.denggeng.learning.word.service.NewWordRepository;
 import com.github.denggeng.learning.word.service.OldWordRepository;
 import com.github.denggeng.learning.word.service.WordLevelRepository;
 import com.google.gson.Gson;
@@ -44,6 +46,10 @@ public class OldWordController {
 
     @Autowired
     private WordLevelRepository wordLevelRepository;
+
+    @Autowired
+    private NewWordRepository newWordRepository;
+
 
     @RequestMapping("")
     public Object getOldWords() {
@@ -90,6 +96,24 @@ public class OldWordController {
             wordLevel.setId(integer.longValue());
             wordLevelRepository.save(wordLevel);
         }
+
+        return "success!";
+    }
+
+    @RequestMapping("genNewWord")
+    public Object genNewWord() {
+        Iterable<OldWord> all = oldWordRepository.findAll(new Sort("wordLevelId"));
+        Map<String,OldWord> wordMap = new TreeMap<>();
+        for (OldWord oldWord : all) {
+            wordMap.put(oldWord.getWord(), oldWord);
+        }
+        List<NewWord> newWords = new ArrayList<>();
+        for (Map.Entry<String, OldWord> oldWordEntry : wordMap.entrySet()) {
+            NewWord newWord = new NewWord();
+            BeanUtils.copyProperties(oldWordEntry.getValue(), newWord);
+            newWords.add(newWord);
+        }
+        newWordRepository.save(newWords);
 
         return "success!";
     }
