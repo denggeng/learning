@@ -58,26 +58,28 @@ public class TestCrack {
         extraSingle(file, "D:\\study\\words", "D:\\study\\extract");
     }
 
-    private void treeExtract(File file) {
+    private void treeExtract(File file, String prefixZpkFolder, String prefixExtraFolder) {
         if (file.isDirectory()) {
             File[] files = file.listFiles();
             if (files != null) {
                 for (File innerFile : files) {
-                    treeExtract(innerFile);
+                    treeExtract(innerFile, prefixZpkFolder, prefixExtraFolder);
                 }
             }
 
         } else {
             if (file.getPath().endsWith(".zpk")) {
-                extraSingle(file, "D:\\study\\words\\zpack", "D:\\study\\words\\extract");
+                extraSingle(file, prefixZpkFolder, prefixExtraFolder);
             }
         }
     }
 
     @Test
     public void testExtractAll() {
-        File wordsDir = new File("D:\\study\\words\\zpack");
-        treeExtract(wordsDir);
+        String prefixZpkFolder = "D:\\study\\words\\zpack";
+        String prefixExtraFolder = "D:\\study\\words\\extract";
+        File wordsDir = new File(prefixZpkFolder);
+        treeExtract(wordsDir, prefixZpkFolder, prefixExtraFolder);
     }
 
     @Test
