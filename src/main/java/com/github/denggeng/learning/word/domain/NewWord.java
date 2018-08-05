@@ -19,7 +19,6 @@ public class NewWord implements Serializable {
     @GeneratedValue
     private Long id;
 
-
     private Integer topicId;
 
     private Integer wordLevelId;

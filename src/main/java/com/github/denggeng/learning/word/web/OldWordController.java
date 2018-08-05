@@ -4,9 +4,10 @@ import com.github.denggeng.learning.word.domain.NewWord;
 import com.github.denggeng.learning.word.domain.OldWord;
 import com.github.denggeng.learning.word.domain.OriOldWord;
 import com.github.denggeng.learning.word.domain.WordLevel;
-import com.github.denggeng.learning.word.service.NewWordRepository;
-import com.github.denggeng.learning.word.service.OldWordRepository;
-import com.github.denggeng.learning.word.service.WordLevelRepository;
+import com.github.denggeng.learning.word.repository.NewWordRepository;
+import com.github.denggeng.learning.word.repository.OldWordRepository;
+import com.github.denggeng.learning.word.repository.WordLevelRepository;
+import com.github.denggeng.learning.word.service.EtymaService;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -49,6 +50,9 @@ public class OldWordController {
 
     @Autowired
     private NewWordRepository newWordRepository;
+
+    @Autowired
+    private EtymaService etymaService;
 
 
     @RequestMapping("")
@@ -103,7 +107,7 @@ public class OldWordController {
     @RequestMapping("genNewWord")
     public Object genNewWord() {
         Iterable<OldWord> all = oldWordRepository.findAll(new Sort("wordLevelId"));
-        Map<String,OldWord> wordMap = new TreeMap<>();
+        Map<String, OldWord> wordMap = new TreeMap<>();
         for (OldWord oldWord : all) {
             wordMap.put(oldWord.getWord(), oldWord);
         }
@@ -116,6 +120,15 @@ public class OldWordController {
         newWordRepository.save(newWords);
 
         return "success!";
+    }
+
+    @RequestMapping("initEtyma")
+    public String initEtyma() {
+        new Thread(() -> {
+            int count = etymaService.genEtyma();
+            System.out.println("generate " + count + " etyma(s)");
+        }).start();
+        return "submit create etymas";
     }
 
     private void treeRead(File file) {

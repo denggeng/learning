@@ -1,4 +1,4 @@
-package com.github.denggeng.learning.word.service;
+package com.github.denggeng.learning.word.repository;
 
 import com.github.denggeng.learning.word.domain.OldWord;
 import org.springframework.data.repository.PagingAndSortingRepository;
