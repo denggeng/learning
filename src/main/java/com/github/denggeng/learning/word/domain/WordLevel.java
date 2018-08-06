@@ -1,6 +1,8 @@
 package com.github.denggeng.learning.word.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.io.Serializable;
 
@@ -10,9 +12,16 @@ public class WordLevel implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
+    @GeneratedValue
     private Long id;
 
-    private String name;
+    private String levelName;
+
+    private String word;
+
+    private Integer levelId;
+
+
 
     public Long getId() {
         return id;
@@ -22,11 +31,27 @@ public class WordLevel implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getLevelName() {
+        return levelName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setLevelName(String levelName) {
+        this.levelName = levelName;
+    }
+
+    public String getWord() {
+        return word;
+    }
+
+    public void setWord(String word) {
+        this.word = word;
+    }
+
+    public Integer getLevelId() {
+        return levelId;
+    }
+
+    public void setLevelId(Integer levelId) {
+        this.levelId = levelId;
     }
 }

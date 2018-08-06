@@ -92,6 +92,7 @@ public class ZPackage {
             return this.filename;
         }
 
+        @Override
         void read(InputStream inputStream) throws IOException {
             this.byteOffset = StructHelper.readLong(inputStream);
             this.nameHash = StructHelper.readLong(inputStream);
@@ -104,10 +105,12 @@ public class ZPackage {
             this.reserved = StructHelper.readInt(inputStream);
         }
 
+        @Override
         public String toString() {
             return "FileEntry [filename=" + this.filename + ", byteOffset=" + this.byteOffset + ", nameHash=" + this.nameHash + ", packSize=" + this.packSize + ", originSize=" + this.originSize + ", flag=" + this.flag + ", chunkSize=" + this.chunkSize + ", contentHash=" + this.contentHash + ", availableSize=" + this.availableSize + ", reserved=" + this.reserved + "]";
         }
 
+        @Override
         void write(OutputStream outputStream) throws IOException {
             StructHelper.writeLong(outputStream, this.byteOffset);
             StructHelper.writeLong(outputStream, this.nameHash);
@@ -142,6 +145,7 @@ public class ZPackage {
             this.reserved = new int[RESERVED_COUNT];
         }
 
+        @Override
         void read(InputStream inputStream) throws IOException {
             this.sign = StructHelper.readInt(inputStream);
             this.version = StructHelper.readInt(inputStream);
@@ -160,10 +164,12 @@ public class ZPackage {
             }
         }
 
+        @Override
         public String toString() {
             return "PackageHeader [sign=" + this.sign + ", version=" + this.version + ", headerSize=" + this.headerSize + ", fileCount=" + this.fileCount + ", fileEntryOffset=" + this.fileEntryOffset + ", filenameOffset=" + this.filenameOffset + ", allFileEntrySize=" + this.allFileEntrySize + ", allFilenameSize=" + this.allFilenameSize + ", originFilenamesSize=" + this.originFilenamesSize + ", chunkSize=" + this.chunkSize + ", flag=" + this.flag + ", fileEntrySize=" + this.fileEntrySize + ", reserved=" + Arrays.toString(this.reserved) + "]";
         }
 
+        @Override
         void write(OutputStream outputStream) throws IOException {
             StructHelper.writeInt(outputStream, this.sign);
             StructHelper.writeInt(outputStream, this.version);

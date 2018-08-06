@@ -18,6 +18,7 @@ public class ZPackOutputStream extends OutputStream {
         this.mEntry = fileEntry;
     }
 
+    @Override
     public void write(int i) throws IOException {
         if (this.mWritePos >= this.mSize) {
             throw new IOException("Cannt write anymore");
@@ -26,6 +27,7 @@ public class ZPackOutputStream extends OutputStream {
         this.mWritePos++;
     }
 
+    @Override
     public void write(byte[] bArr, int i, int i2) throws IOException {
         if (this.mWritePos + i2 > this.mSize) {
             throw new IOException("Cannt write anymore");

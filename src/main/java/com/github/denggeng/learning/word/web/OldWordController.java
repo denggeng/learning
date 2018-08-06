@@ -51,9 +51,6 @@ public class OldWordController {
     @Autowired
     private NewWordRepository newWordRepository;
 
-    @Autowired
-    private EtymaService etymaService;
-
 
     @RequestMapping("")
     public Object getOldWords() {
@@ -122,14 +119,7 @@ public class OldWordController {
         return "success!";
     }
 
-    @RequestMapping("initEtyma")
-    public String initEtyma() {
-        new Thread(() -> {
-            int count = etymaService.genEtyma();
-            System.out.println("generate " + count + " etyma(s)");
-        }).start();
-        return "submit create etymas";
-    }
+
 
     private void treeRead(File file) {
         if (file.isDirectory()) {

@@ -15,13 +15,16 @@ public class ZPackInputStream extends InputStream {
         this.mSize = i;
     }
 
+    @Override
     public int available() throws IOException {
         return this.mSize;
     }
 
+    @Override
     public void close() throws IOException {
     }
 
+    @Override
     public int read() throws IOException {
         if (this.mReadPos >= this.mSize || this.mSize == 0) {
             return -1;
@@ -31,6 +34,7 @@ public class ZPackInputStream extends InputStream {
         return read;
     }
 
+    @Override
     public int read(byte[] bArr, int i, int i2) throws IOException {
         if ((i | i2) < 0 || i > bArr.length || bArr.length - i < i2) {
             throw new IOException("ArrayIndexOutOffBound");
