@@ -2,6 +2,9 @@ package com.github.denggeng.learning.core;
 
 import org.junit.Test;
 
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -29,6 +32,26 @@ public class TestMatch {
         System.out.println("house＋房子".replaceAll("＋", "+"));
         System.out.println("啊···啊".replaceAll("···", "…"));
         System.out.println("benefi(t)益处 ".trim());
-        System.out.println("multi-多".replaceAll("-",""));
+        System.out.println("multi-多".replaceAll("-", ""));
+    }
+
+    @Test
+    public void matchTwo() {
+        Set<Character> alphabet = new HashSet<>();
+        Collections.addAll(alphabet, 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
+                'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z');
+        String testTxt = "per始终是";
+        int idx = 0;
+        for (int i = 0; i < testTxt.length(); i++) {
+            if (alphabet.contains(testTxt.charAt(i))) {
+                continue;
+            } else {
+                idx = i;
+                break;
+            }
+        }
+        System.out.println(testTxt.substring(0,idx));
+        System.out.println(testTxt.substring(idx));
+
     }
 }

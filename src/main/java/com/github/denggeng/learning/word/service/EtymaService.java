@@ -117,13 +117,19 @@ public class EtymaService {
             etyma.add(equlsEtyma[0]);
         }
         Pattern pat = Pattern.compile("^(\\w+\\(*\\w*\\)*\\w*)" +
-                "([\u4E00-\u9FA5\u3002\uff1b\uff0c\uff1a\u201c\u201d\uff08\uff09\u3001\uff1f\u300a\u300b…,/“”]*)$");
+                "([\u4E00-\u9FA5\u3002\uff1b\uff0c\uff1a\u201c\u201d\uff08\uff09\u3001\uff1f\u300a\u300b…,<>\\[\\]/“”]*)$");
         Matcher mat = pat.matcher(pureEtyma);
         if (mat.matches() && mat.groupCount() == 2) {
             etyma.add(mat.group(1));
             etyma.add(mat.group(2));
         } else {
-            System.out.println("No matches for :" + minEtyms);
+            int idx = firstNoneChar(pureEtyma);
+            if (idx > 0 && idx < pureEtyma.length()) {
+                etyma.add(pureEtyma.substring(0,idx));
+                etyma.add(pureEtyma.substring(idx));
+            }else {
+                System.out.println("No matches for :" + minEtyms);
+            }
         }
 
         return etyma;
@@ -173,6 +179,22 @@ public class EtymaService {
         }
         logger.info("old etymas size :{}", etymas.size());
         return etymas;
+    }
+
+    private int firstNoneChar(String text) {
+        int idx = 0;
+        Set<Character> alphabet = new HashSet<>();
+        Collections.addAll(alphabet, 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
+                'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z');
+        for (int i = 0; i < text.length(); i++) {
+            if (alphabet.contains(text.charAt(i))) {
+                continue;
+            } else {
+                idx = i;
+                break;
+            }
+        }
+        return idx;
     }
 
 }
